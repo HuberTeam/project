@@ -239,6 +239,11 @@ class MemberController extends Controller {
         }
     }
 
+    public function demo()
+    {
+        echo "demo";
+    }
+
 
 
 }
