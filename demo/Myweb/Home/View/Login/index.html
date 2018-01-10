@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Login</title>
+<script src="__PUBLIC__/Home/bootstrap/js/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Home/bootstrap/js/bootstrap.min.js">
+<link rel="stylesheet" href="__PUBLIC__/Home/bootstrap/js/bootstrap.js">
+<link rel="stylesheet" href="__PUBLIC__/Home/bootstrap/css/bootstrap.css">
+
+</head>
+<body>
+
+	<!-- <form action="__MODULE__/Login/login" method="post"> -->
+	<div style="margin:0 auto; width: 400px">
+	<h3>Login</h3>
+	<span > Username :</span> <input type="text" class="form-control" id="username" name="username" placeholder="Username" style="width: 200px" value="">
+	<p id="compared_name"></p>
+	<span > Password :</span> <input type="password" class="form-control" id="password" name="password" placeholder="Password" style="width: 200px" value="">
+	<p id="compared_password"></p>
+    <button type="submit" id="login" class="btn btn-info">Login</button>
+    </div>
+	<!-- </form> -->
+</body>
+</html>
+<script>
+$("#username").blur(function(){
+      var username = $("#username").val();
+      console.log(username);
+      // alert(username);
+});
+$("#password").blur(function(){
+      var password = $("#password").val();
+      pwd_length = password.length;
+      if (pwd_length < '4' || pwd_length > '16') {
+          $("#compared_password").html("密码长度为4到16位字符").css("color","red");
+      } else {
+      	  $("#compared_password").html("");
+      }
+      console.log(password);
+      console.log(pwd_length);
+});
+
+$("#login").click(function(){
+      var username = $("#username").val();
+      var password = $("#password").val();
+      $.ajax({
+			url:'__MODULE__/Login/login',
+			type:'post',
+			dataType:'json',
+			data:{username:username,password:password},
+			success:function(data){
+				if (data == '1') {
+					alert("帐号或者密码不对");
+				} else if(data == '2') {
+					alert("登录成功");
+					window.location.href = '__MODULE__/Index/index';
+				}
+			}
+	 })
+});
+</script>

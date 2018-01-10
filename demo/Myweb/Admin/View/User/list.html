@@ -1,0 +1,214 @@
+﻿<!DOCTYPE HTML>
+<html>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 用户管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<form action="__MODULE__/Message/message" method="get">
+		<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius del"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="__MODULE__/User/add" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加会员</a> <button type="button" class="btn btn-primary radius send_message" onclick="send_message()"><i class="Hui-iconfont">&#xe600;</i> 发送站内信</button></span> <span class="r">共有数据：<strong>{$number['0']['number']}</strong> 条</span> </div>
+		<div class="mt-20" id="uid">
+			<table class="table table-border table-bordered table-hover table-bg table-sort">
+				<thead>
+				<tr class="text-c">
+					<th width="25">
+					</th>
+					<th width="50">商家ID 已弃用</th>
+					<th width="100">微信标识符</th>
+					<th width="100">微信昵称</th>
+					<th width="100">微信头像</th>
+					<th width="100">微信城市</th>
+					<th width="100">wx_province</th>
+					<th width="100">微信性别</th>
+					<th width="110">手机号</th>
+					<th width="100">登录密码</th>
+					<th width="100">注册日期</th>
+					<th width="100">姓名</th>
+					<th width="100">有效性标识</th>
+					<th width="100">删除标识</th>
+					<th width="100">推荐人ID</th>
+					<th width="100">微信唯一标识</th>
+					<th width="100">注册来源</th>
+					<th width="100">编辑</th>
+				</tr>
+				</thead>
+				<tbody>
+				<if condition="$data != ''">
+					<foreach name="data" item="row">
+						<tr class="text-c">
+							<td><input type="checkbox" value="{$row.id}" name="list_id[]"></td>
+							<td>{$row.supplier_id}</td>
+							<td><p class="demo">{$row.wx_openid}</p></td>
+							<td>{$row.wx_nickname}</td>
+							<td><p class="demo">{$row.wx_headimg}</p></td>
+							<td>{$row.wx_city}</td>
+							<td>{$row.wx_province}</td>
+							<td>{$row.sex}</td>
+							<td>{$row.mobile}</td>
+							<td><p class="demo">{$row.pwd}</p></td>
+							<td>{$row.cdate}</td>
+							<td>{$row.username}</td>
+							<td>{$row.is_effect}</td>
+							<td>{$row.is_delete}</td>
+							<td>{$row.pid}</td>
+							<td><p class="demo">{$row.wx_unionid}</p></td>
+							<td>{$row.reg_from}</td>
+
+							<td class="td-manage"> <a title="编辑" href="__MODULE__/user/edit/id/{$row.id}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> &nbsp;&nbsp; <a title="删除" href="javascript:;" onclick="member_del(this,{:$row['id']})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+						</tr>
+					</foreach>
+					<else />
+					<tr><td colspan="7">没有数据</td></tr>
+				</if>
+				</tbody>
+			</table>
+		</div><br>
+
+	</form>
+</div>
+
+<div style="margin-left:30px">
+	<button class="btn btn-success alldel">全选</button><button class="btn btn-success nodel">全不选</button><button class="btn btn-success fdel">反选</button>
+	<button class="btn btn-success start" style="margin-left:400px">首页</button>
+	<for start="1" end="$offset">
+		<button class="btn btn-success num" style="margin-right:10px">{$i}</button>
+	</for>
+	<button class="btn btn-success end" >尾页</button>
+	<!--<button class="btn btn-success" style="margin-left:400px">{$offset}</button>-->
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__PUBLIC__/Admin/H-ui/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/H-ui/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/H-ui/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/H-ui/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/Admin/H-ui/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/H-ui/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/H-ui/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+    // $(function(){
+    // 	$('.table-sort').dataTable({
+    // 		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+    // 		"bStateSave": true,//状态保存
+    // 		"aoColumnDefs": [
+    // 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+    // 		  {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
+    // 		]
+    // 	});
+
+    // });
+    // 跳转首页
+    $('.start').click(function () {
+       var num = 1;
+       var status = 'ajax';
+       $.ajax({
+		   type: 'post',
+		   url: '__MODULE__/User/index',
+		   data: {num:num,status:status},
+		   success: function (data) {
+			   $('#uid').html(data);
+           }
+	   })
+    })
+    // 跳转到当前的页面
+    $('.num').click(function () {
+        var num = $(this).html();
+        var status = 'ajax';
+        // alert(confirm(num));
+        $.ajax({
+            type: 'POST',
+            url: '__MODULE__/User/index',
+            data: {num:num,status:status},
+            success: function(data){
+                $('#uid').html(data);
+            },
+        });
+    })
+    // 跳转尾页
+    $('.end').click(function () {
+        alert($('.end').html());
+    })
+    //全选
+    $('.alldel').click(function(){
+        //获取table 下的tr
+        $('table').find('tr').each(function(){
+            //把tr里的input选中
+            $(this).find(':checkbox').prop('checked',true);
+        })
+    })
+    //全不选
+    $('.nodel').click(function(){
+        //获取table 下的tr
+        $('table').find('tr').each(function(){
+            //把tr里的input选中
+            $(this).find(':checkbox').prop('checked',false);
+        })
+    })
+    //反选
+    $('.fdel').click(function(){
+        $('table').find('tr').each(function(){
+            //判断
+            if($(this).find(':checkbox').prop('checked')){
+                $(this).find(':checkbox').prop('checked',false);
+            }else{
+                $(this).find(':checkbox').prop('checked',true);
+            }
+        })
+    })
+    //批量删除
+    $('.del').click(function(){
+        //存储选中的数据id
+        a = [];
+        //获取选中数据的id
+        $(':checkbox').each(function(){
+            //判断是否选中
+            if($(this).prop('checked')){
+                id = $(this).val();
+                a.push(id);
+                // alert(id);
+            }
+        })
+        s = confirm('你确定删除吗？');
+        if(s){
+            //Ajax
+            $.get("__URL__/pldel",{id:a},function(data){
+                alert(data);
+                //删除选中的数据的tr
+                for(var i=0;i<a.length;i++){
+                    //获取选中的input
+                    $('input[value='+a[i]+']').parents('tr').remove();
+                }
+            })
+        }
+    })
+</script>
+</body>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="__PUBLIC__/Admin/H-ui/lib/html5shiv.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/H-ui/lib/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/H-ui/static/h-ui/css/H-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/H-ui/static/h-ui.admin/css/H-ui.admin.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/H-ui/lib/Hui-iconfont/1.0.8/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/H-ui/static/h-ui.admin/skin/default/skin.css" id="skin" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/H-ui/static/h-ui.admin/css/style.css" />
+	<!--[if IE 6]>
+	<script type="text/javascript" src="__PUBLIC__/Admin/H-ui/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+	<script>DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	<title>用户管理</title>
+	<style>
+		.demo{
+			max-width: 90px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	</style>
+</head>
+</html>
