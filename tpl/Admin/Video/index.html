@@ -1,0 +1,120 @@
+<include file="./admin_header" />
+<div id="page-wrapper">
+      <div class="container" > 
+         <!-- Page Heading -->
+         <div class="row">
+            <div class="col-lg-12">
+               <ol class="breadcrumb">
+                  <li class="active"><i class="fa fa-file-o"></i>&nbsp;视频管理</li>
+                  <li class="active"> <i class="fa fa-list"></i>&nbsp;视频列表</li>
+               </ol>
+            </div>
+         </div>
+         <!--1 /.row -->
+         <div class="row">
+            <div class="col-lg-6">
+               <form  method="post">
+                  <div class="input-group"><span class="input-group-addon">所属栏目</span>
+                     <select class="form-control" name="catid">
+                        <option value='-1'<if condition="$catid eq -1">selected="selected"</if>> 查看全部</option>
+                        <foreach name="viewMenus" item="sitenav">
+                           <option value="{$sitenav.menu_id}" <if condition="$catid eq $sitenav['menu_id']"> selected="selected"</if>>{$sitenav.name}</option>
+                        </foreach>
+                     </select>
+                     <input type="hidden" name="c" value="content"/>
+                     <input type="hidden" name="a" value="index"/>
+                     <span class="input-group-btn">
+                     <button id="searchContentByType" type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                     </span> </div>
+               </form>
+            </div>
+            <div class="col-lg-6">
+               <form  method="post">
+                  <div class="input-group"><span class="input-group-addon">搜一下</span>
+                     <input type="hidden" name="c" value="content"/>
+                     <input type="hidden" name="a" value="index"/>
+                     <if condition="$title eq null "><input class="form-control" name="title" type="text" value="" placeholder="输入视频集标题进行搜索"/>
+                        <else /><input class="form-control" name="title" type="text" value={$title} ></if>
+                     <span class="input-group-btn">
+                     <button id="searchContentByN" type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                     </span> </div>
+               </form>
+            </div>
+         </div>
+         
+         <!--2 /.row -->
+         <div class="row">
+            <div class="form-group"></div>
+            <div class="col-lg-12">
+               <div class="table-responsive">
+                  <form id="tableListOrder">
+                     <table class="table table-bordered table-hover text-center poicms-table">
+                        <thead>
+                           <tr>
+                              <th>排序</th>
+                              <th>id</th>
+                              <th>标题</th>
+                              <th>栏目</th>
+                              <th>作者</th>
+                              <th>创建时间</th>
+                              <th>更新时间</th>
+                              <th>状态</th>
+                              <th>操作</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="contents" id="vo">
+                           <tr>
+                              <td><input size="4" type="text" class="listorder" name="listorder[{$vo.video_id}]" value="{$vo.listorder}"/></td>
+                              <td>{$vo.video_id}</td>
+                              <td>{$vo.title}</td>
+                              <td>{$vo.catid|getCatNameByCatId=$viewMenus,###}</td>
+                              <td>{$vo.author}</td>
+                              <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+                              <td>{$vo.update_time|date="Y-m-d H:i",###}</td>
+<td><a href="#" id="toggleStatus" attr-id="{$vo.video_id}" attr-name="视频集 {$vo.title} " attr-status="{$vo.status}" title="切换状态" ><i class="fa fa-refresh"  aria-hidden="true"></i>&nbsp;{$vo.status|getStatus}</a></td>
+                              <td><a href="#" id="poicms-edit"  attr-id="{$vo.video_id}"><i class="fa fa-edit" title="编辑" aria-hidden="true"></i></a>
+                                    <i>&nbsp;&nbsp;&nbsp;</i>
+                                    <a href="#" style="color:#E74C3C" id="poicms_delete"  attr-id="{$vo.video_id}" attr-name="视频集 {$vo.title}"><i class="fa fa-trash-o " title="删除" aria-hidden="true"></i></a></td>
+                           </tr>
+                        </volist>
+                        </tbody>
+                     </table>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <!--3 /.row -->
+         
+         <div class="row">
+            <div class="col-lg-8">
+               <ul >
+                  {$pageRes}
+               </ul>
+            </div>
+         </div>
+         <!--4 /.row -->
+         <div class="row">
+            <div class="col-lg-12">
+               <button id="button-listorder" type="button" class="btn btn-primary "><i class="fa fa-arrows-v" aria-hidden="true"></i>&nbsp;更新排序</button>
+               <i>&nbsp;</i>
+               <button  id="button-add" type="button" class="btn btn-primary "><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加</button>
+            </div>
+         </div>
+         <!--5 /.row --> 
+      </div>
+      
+      <!-- /.container --> 
+      
+   </div>
+   <!-- /#page-wrapper --> 
+   
+</div>
+<!-- /#wrapper --> 
+<!-- Morris Charts JavaScript --> 
+<script>
+  var SCOPE = {
+    'typec' : 'Video',
+  }
+</script> 
+<include file="./admin_footer" />

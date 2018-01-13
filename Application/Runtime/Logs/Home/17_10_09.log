@@ -1,0 +1,26 @@
+[ 2017-10-09T13:28:15+08:00 ] ::1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000575s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005765s ]
+NOTIC: [2048] Declaration of Home\Controller\CommonController::error() should be compatible with Think\Controller::error($message = '', $jumpUrl = '', $ajax = false) D:\wamp64\www\Application\Home\Controller\CommonController.class.php 第 24 行.
+ERR: 1146:Table 'poi.poi_news' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `poi_news`
+ERR: 1146:Table 'poi.poi_news' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `poi_news`
+
+[ 2017-10-09T14:28:46+08:00 ] 127.0.0.1 /index.php?
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000137s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000463s ]
+NOTIC: [2048] Declaration of Home\Controller\CommonController::error() should be compatible with Think\Controller::error($message = '', $jumpUrl = '', $ajax = false) D:\wamp64\www\Application\Home\Controller\CommonController.class.php 第 24 行.
+ERR: 1146:Table 'poi.poi_news' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `poi_news`
+ERR: 1146:Table 'poi.poi_news' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `poi_news`
+

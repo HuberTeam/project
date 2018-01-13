@@ -1,0 +1,82 @@
+{
+  "_from": "flv.js",
+  "_id": "flv.js@1.3.3",
+  "_inBundle": false,
+  "_integrity": "sha1-SYF3ipIBIbGMHNwEhR8wW3jNqm0=",
+  "_location": "/flv.js",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "flv.js",
+    "name": "flv.js",
+    "escapedName": "flv.js",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/flv.js/-/flv.js-1.3.3.tgz",
+  "_shasum": "4981778a920121b18c1cdc04851f305b78cdaa6d",
+  "_spec": "flv.js",
+  "_where": "C:\\Users\\CC",
+  "author": {
+    "name": "zheng qian",
+    "email": "xqq@xqq.im"
+  },
+  "bugs": {
+    "url": "https://github.com/Bilibili/flv.js/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "es6-promise": "^4.1.0",
+    "webworkify": "^1.4.0"
+  },
+  "deprecated": false,
+  "description": "HTML5 FLV Player",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "browserify-derequire": "^0.9.4",
+    "browserify-versionify": "^1.0.6",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-cli": "^1.2.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-header": "^1.8.8",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.1.1",
+    "http-server": "^0.9.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.9.0"
+  },
+  "homepage": "https://github.com/Bilibili/flv.js#readme",
+  "jsnext:main": "./src/flv.js",
+  "keywords": [
+    "html5",
+    "flv",
+    "mse",
+    "javascript"
+  ],
+  "license": "Apache-2.0",
+  "main": "./dist/flv.js",
+  "module": "./src/flv.js",
+  "name": "flv.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bilibili/flv.js.git"
+  },
+  "scripts": {
+    "build": "gulp release",
+    "dev": "gulp watch",
+    "serve": "http-server -p 8000 ."
+  },
+  "types": "./d.ts/flv.d.ts",
+  "version": "1.3.3"
+}

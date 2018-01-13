@@ -1,0 +1,26 @@
+body {
+	background-color: #000;
+}
+#particles-js {
+	position: fixed;
+	top: 0px;
+	z-index: 0;
+	overflow: hidden;
+	width: 100%;
+}
+.login {
+	/*	position: relative!important;*/
+	float: none!important;
+	margin: 10% auto;
+	padding: 1px;
+	/*	width: 40%;*/
+/*	height: 30%;*/
+	border-radius: 25px;
+	background-color: hsla(0,0%,100%,.3);
+	color: #fff;
+}
+.customform {
+	margin: 0 auto ;
+	width: 50%;
+	z-index: 10;
+}
